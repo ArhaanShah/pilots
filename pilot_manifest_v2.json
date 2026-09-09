@@ -1,12 +1,24 @@
 {
   "protocol_version": "pilot-v2",
-  "master_seed": "20260909",
-  "requested_model": "openai/gpt-oss-120b",
+  "creation_timestamp": "2026-09-09T00:00:00Z",
+  "master_schedule_seed": "20260909",
   "provider": "groq",
-  "temperature": 1.0,
-  "max_completion_tokens": 2048,
-  "reasoning_effort": "medium",
-  "question_bank_hash": "51f68a0e4e2b20966ef98a6ab21f0419e9705b559b497e71874622a5bc926408",
-  "timestamp": 0,
-  "log_filename": "test_log.jsonl"
+  "requested_model": "openai/gpt-oss-120b",
+  "generation_settings": {
+    "temperature": 1.0,
+    "max_completion_tokens": 2048,
+    "reasoning_effort": "medium"
+  },
+  "generation_settings_sha256": "73dcbcbf4e3b9596f464a42329560c1d63c3551458a5ca7df24f7a6a679941d5",
+  "question_bank_sha256": "7fd6d8d6977a49eae13c7b8ada7045c69cdbfb73772bed574feb450e01ebd84f",
+  "prompt_template_sha256": "5cffe824b87070dd01d8d525e768bda0fc0ce4a9aab732bc7845a451fb05cbbb",
+  "schedule_sha256": "d299c7bf959ff57fa50bfe72b829f9013806a3fa5cd7ba3cd65e2c8925f5ed9a",
+  "output_filenames": {
+    "manifest": "pilot_manifest_v2.json",
+    "schedule": "pilot_schedule_v2.json",
+    "thresholds": "pilot_thresholds_v2.json",
+    "reviewer_inputs": "pilot_reviewer_inputs_v2.json",
+    "log": "pilot_log_v2.jsonl",
+    "analysis": "pilot_analysis_v2.json"
+  }
 }

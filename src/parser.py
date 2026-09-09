@@ -135,14 +135,16 @@ def evaluate_formula(formula, factors):
     """Evaluates the fixed factorization formula securely."""
     if not formula:
         return None
-    expr = formula
-    for k, v in factors.items():
-        expr = re.sub(rf'\b{k}\b', str(v), expr)
-    
-    if not re.match(r'^[0-9.eE+*/\-\s()]+$', expr):
-        return None
     try:
-        val = eval(expr)
+        # Assuming all formulas are simple multiplications for the pilot
+        # e.g., "living_giraffes * average_spots_per_giraffe"
+        parts = [p.strip() for p in formula.split('*')]
+        val = 1.0
+        for p in parts:
+            if p in factors:
+                val *= factors[p]
+            else:
+                val *= float(p)
         if val > 0:
             return val
     except Exception:

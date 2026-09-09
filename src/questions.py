@@ -17,7 +17,7 @@ PILOT_QUESTIONS = {
         "fixed_definitions": "song_duration_seconds: duration in seconds of the entire fast song; average_zill_strikes_per_second: average number of individual cymbal strikes per second over the entire song, including rests and inactive periods",
         "constraints": {
             "song_duration_seconds": {"min_exclusive": 0},
-            "average_zill_strikes_per_second": {"min_inclusive": 0}
+            "average_zill_strikes_per_second": {"min_exclusive": 0}
         },
         "url": "https://github.com/TruthfulAI-research/value_leakage/blob/main/shared/prompts/thresholds.py"
     },

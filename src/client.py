@@ -3,31 +3,42 @@ import time
 import json
 import hashlib
 from groq import Groq, InternalServerError, APIConnectionError, RateLimitError
-from dotenv import load_dotenv
-
-load_dotenv()
+from src.config import RunConfig
 
 class ExperimentClient:
-    def __init__(self, model="openai/gpt-oss-120b", log_file="pilot_log_v2.jsonl"):
-        self.client = Groq(api_key=os.getenv("GROQ_API_KEY", "test_key"))
-        self.model = model
-        self.log_file = log_file
-        self.rpm_limit = 2
-        self.sleep_time = 60.0 / self.rpm_limit
+    def __init__(self, config: RunConfig):
+        # Allow testing without key
+        key = os.getenv("GROQ_API_KEY")
+        if not key:
+            # We assume it's a test environment if key is missing, mock it
+            key = "mock_key"
+        self.client = Groq(api_key=key)
+        self.config = config
+        self.sleep_time = 60.0 / self.config.requests_per_minute
         self.last_request_time = 0
-        self.protocol_version = "pilot-v2"
-        self.master_seed = "20260909"
         
         self.completed_requests = {}
-        if os.path.exists(self.log_file):
-            with open(self.log_file, "r") as f:
-                for line in f:
+        if os.path.exists(self.config.log_path):
+            with open(self.config.log_path, "r") as f:
+                for line_idx, line in enumerate(f):
                     try:
                         record = json.loads(line)
                         if 'request_id' in record:
-                            self.completed_requests[record['request_id']] = record
-                    except:
-                        pass
+                            req_id = record['request_id']
+                            
+                            # If it's a success record
+                            if record.get('transport_status') == 'success':
+                                if req_id in self.completed_requests:
+                                    if self.completed_requests[req_id].get('transport_status') == 'success':
+                                        raise ValueError(f"Conflicting successful records for {req_id} at line {line_idx+1}")
+                                self.completed_requests[req_id] = record
+                            else:
+                                # It's a transport error record. 
+                                # Only store it if we don't already have a success record
+                                if req_id not in self.completed_requests or self.completed_requests[req_id].get('transport_status') != 'success':
+                                    self.completed_requests[req_id] = record
+                    except json.JSONDecodeError:
+                        raise ValueError(f"Malformed JSONL record at line {line_idx+1}")
 
     def _enforce_rate_limit(self, retry_after=None):
         if retry_after is not None:
@@ -43,7 +54,8 @@ class ExperimentClient:
         self.last_request_time = time.time()
         
     def log_result(self, record):
-        with open(self.log_file, "a") as f:
+        # We need atomic appending or just standard file append
+        with open(self.config.log_path, "a") as f:
             f.write(json.dumps(record) + "\n")
             
     def _hash_str(self, text):
@@ -53,8 +65,7 @@ class ExperimentClient:
         return hashlib.sha256(json.dumps(d, sort_keys=True).encode()).hexdigest()
 
     def _get_request_seed(self, request_id):
-        # Distinct deterministic seed derived from request ID
-        seed_hash = hashlib.sha256(f"{self.protocol_version}:{request_id}:{self.master_seed}".encode()).digest()
+        seed_hash = hashlib.sha256(f"{self.config.protocol_version}:{request_id}:{self.config.master_seed}".encode()).digest()
         return int.from_bytes(seed_hash[:4], "big") & 0x7FFFFFFF
 
     def generate(self, request_id, prompt, metadata=None, execute=False):
@@ -62,65 +73,65 @@ class ExperimentClient:
         req_seed = self._get_request_seed(request_id)
         
         gen_settings = {
-            "temperature": 1.0,
-            "max_completion_tokens": 2048,
+            "temperature": self.config.temperature,
+            "max_completion_tokens": self.config.max_completion_tokens,
             "seed": req_seed,
-            "reasoning_effort": "medium"
+            "reasoning_effort": self.config.reasoning_effort
         }
         settings_hash = self._hash_dict(gen_settings)
         
         if request_id in self.completed_requests:
             rec = self.completed_requests[request_id]
-            # Checkpoint safe checking
-            if rec.get('protocol_version') != self.protocol_version:
+            if rec.get('protocol_version') != self.config.protocol_version:
                 raise ValueError(f"Version mismatch for {request_id}")
             if rec.get('prompt_sha256') != prompt_hash:
                 raise ValueError(f"Prompt mismatch for {request_id}")
-            if rec.get('requested_model') != self.model:
+            if rec.get('requested_model') != self.config.requested_model:
                 raise ValueError(f"Model mismatch for {request_id}")
             if rec.get('settings_hash') != settings_hash:
                 raise ValueError(f"Settings mismatch for {request_id}")
                 
-            # Do not return incomplete transport failures as completed!
-            if rec.get('transport_status') != 'success':
-                pass # Need to retry
-            else:
+            if rec.get('transport_status') == 'success':
                 return rec
                 
         if not execute:
             return None # Preflight only
-
-        self._enforce_rate_limit()
-        
+            
         kwargs = {
-            "model": self.model,
+            "model": self.config.requested_model,
             "messages": [{"role": "user", "content": prompt}],
-            "temperature": 1.0,
-            "max_completion_tokens": 2048,
+            "temperature": self.config.temperature,
+            "max_completion_tokens": self.config.max_completion_tokens,
             "seed": req_seed
         }
         
-        if "gpt" in self.model.lower() or "o1" in self.model.lower():
-            kwargs["extra_body"] = {"reasoning_effort": "medium"}
+        if "gpt" in self.config.requested_model.lower() or "o1" in self.config.requested_model.lower():
+            kwargs["extra_body"] = {"reasoning_effort": self.config.reasoning_effort}
             
-        retries = 2
-        for attempt in range(retries + 1):
+        transport_retries = 0
+        max_transport_retries = 2
+        
+        while True:
+            self._enforce_rate_limit()
             try:
-                print(f"Executing {request_id} (Attempt {attempt+1})")
+                print(f"Executing {request_id} (Transport Attempt {transport_retries+1})")
                 response = self.client.chat.completions.create(**kwargs)
                 
                 output = response.choices[0].message.content
                 finish_reason = response.choices[0].finish_reason
-                
                 usage = response.usage
                 
                 record = {
                     "request_id": request_id,
-                    "protocol_version": self.protocol_version,
+                    "protocol_version": self.config.protocol_version,
+                    "phase": metadata.get('phase') if metadata else None,
+                    "q_id": metadata.get('q_id') if metadata else None,
+                    "condition": metadata.get('condition') if metadata else None,
+                    "replicate": metadata.get('replicate') if metadata else None,
                     "prompt": prompt,
                     "prompt_sha256": prompt_hash,
                     "request_seed": req_seed,
-                    "requested_model": self.model,
+                    "requested_model": self.config.requested_model,
                     "returned_model": response.model,
                     "system_fingerprint": getattr(response, 'system_fingerprint', None),
                     "settings": gen_settings,
@@ -141,7 +152,8 @@ class ExperimentClient:
                 return record
                 
             except RateLimitError as e:
-                print(f"Rate limited. Waiting 60 seconds. {e}")
+                # Does not consume a transport retry
+                print(f"Rate limited. Waiting. {e}")
                 retry_after = None
                 if hasattr(e, 'response') and hasattr(e.response, 'headers'):
                     retry_after = e.response.headers.get('Retry-After')
@@ -150,30 +162,43 @@ class ExperimentClient:
                 self._enforce_rate_limit(retry_after=retry_after or 60)
             except (InternalServerError, APIConnectionError) as e:
                 print(f"Transport error: {e}")
-                if attempt == retries:
-                    record = {
-                        "request_id": request_id,
-                        "protocol_version": self.protocol_version,
-                        "prompt": prompt,
-                        "prompt_sha256": prompt_hash,
-                        "request_seed": req_seed,
-                        "requested_model": self.model,
-                        "settings": gen_settings,
-                        "settings_hash": settings_hash,
-                        "timestamp": time.time(),
-                        "transport_status": "error",
-                        "error_category": type(e).__name__,
-                        "error_msg": str(e),
-                        "metadata": metadata or {}
-                    }
-                    self.log_result(record)
-                    self.completed_requests[request_id] = record
-                    return record
-                time.sleep(10 * (attempt + 1))
+                err_record = {
+                    "request_id": request_id,
+                    "protocol_version": self.config.protocol_version,
+                    "prompt_sha256": prompt_hash,
+                    "requested_model": self.config.requested_model,
+                    "settings_hash": settings_hash,
+                    "timestamp": time.time(),
+                    "transport_status": "error",
+                    "error_category": type(e).__name__,
+                    "error_msg": str(e),
+                    "attempt_number": transport_retries + 1
+                }
+                self.log_result(err_record)
+                
+                if transport_retries >= max_transport_retries:
+                    print(f"Max transport retries reached for {request_id}")
+                    self.completed_requests[request_id] = err_record
+                    return err_record
+                    
+                transport_retries += 1
+                time.sleep(10 * transport_retries)
             except Exception as e:
                 if "quota" in str(e).lower():
                     print("Quota exhaustion detected. Stopping cleanly.")
-                    exit(1)
+                    # Save a pending-state record and exit cleanly.
+                    err_record = {
+                        "request_id": request_id,
+                        "protocol_version": self.config.protocol_version,
+                        "prompt_sha256": prompt_hash,
+                        "requested_model": self.config.requested_model,
+                        "settings_hash": settings_hash,
+                        "timestamp": time.time(),
+                        "transport_status": "pending_quota",
+                        "error_msg": str(e)
+                    }
+                    self.log_result(err_record)
+                    import sys
+                    sys.exit(0)
                 print(f"Fatal error: {e}")
                 raise e
-        return None

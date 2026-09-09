@@ -1,462 +1,470 @@
 [
   {
     "request_id": "calib_P03_2",
+    "protocol_version": "pilot-v2",
     "phase": "calibration",
     "q_id": "P03",
-    "metadata": {
-      "condition": "none",
-      "replicate": 2
-    }
+    "condition": "none",
+    "replicate": 2,
+    "deterministic_seed": 99948909
   },
   {
     "request_id": "calib_P02_3",
+    "protocol_version": "pilot-v2",
     "phase": "calibration",
     "q_id": "P02",
-    "metadata": {
-      "condition": "none",
-      "replicate": 3
-    }
+    "condition": "none",
+    "replicate": 3,
+    "deterministic_seed": 1171168015
   },
   {
     "request_id": "calib_P03_3",
+    "protocol_version": "pilot-v2",
     "phase": "calibration",
     "q_id": "P03",
-    "metadata": {
-      "condition": "none",
-      "replicate": 3
-    }
+    "condition": "none",
+    "replicate": 3,
+    "deterministic_seed": 1499298404
   },
   {
     "request_id": "calib_P04_3",
+    "protocol_version": "pilot-v2",
     "phase": "calibration",
     "q_id": "P04",
-    "metadata": {
-      "condition": "none",
-      "replicate": 3
-    }
+    "condition": "none",
+    "replicate": 3,
+    "deterministic_seed": 1271662732
   },
   {
     "request_id": "calib_P04_2",
+    "protocol_version": "pilot-v2",
     "phase": "calibration",
     "q_id": "P04",
-    "metadata": {
-      "condition": "none",
-      "replicate": 2
-    }
+    "condition": "none",
+    "replicate": 2,
+    "deterministic_seed": 1200968222
   },
   {
     "request_id": "calib_P01_1",
+    "protocol_version": "pilot-v2",
     "phase": "calibration",
     "q_id": "P01",
-    "metadata": {
-      "condition": "none",
-      "replicate": 1
-    }
+    "condition": "none",
+    "replicate": 1,
+    "deterministic_seed": 1912232753
   },
   {
     "request_id": "calib_P02_4",
+    "protocol_version": "pilot-v2",
     "phase": "calibration",
     "q_id": "P02",
-    "metadata": {
-      "condition": "none",
-      "replicate": 4
-    }
+    "condition": "none",
+    "replicate": 4,
+    "deterministic_seed": 1662607962
   },
   {
     "request_id": "calib_P02_1",
+    "protocol_version": "pilot-v2",
     "phase": "calibration",
     "q_id": "P02",
-    "metadata": {
-      "condition": "none",
-      "replicate": 1
-    }
+    "condition": "none",
+    "replicate": 1,
+    "deterministic_seed": 2088276575
   },
   {
     "request_id": "calib_P02_2",
+    "protocol_version": "pilot-v2",
     "phase": "calibration",
     "q_id": "P02",
-    "metadata": {
-      "condition": "none",
-      "replicate": 2
-    }
+    "condition": "none",
+    "replicate": 2,
+    "deterministic_seed": 222445071
   },
   {
     "request_id": "calib_P04_1",
+    "protocol_version": "pilot-v2",
     "phase": "calibration",
     "q_id": "P04",
-    "metadata": {
-      "condition": "none",
-      "replicate": 1
-    }
+    "condition": "none",
+    "replicate": 1,
+    "deterministic_seed": 305673348
   },
   {
     "request_id": "calib_P03_4",
+    "protocol_version": "pilot-v2",
     "phase": "calibration",
     "q_id": "P03",
-    "metadata": {
-      "condition": "none",
-      "replicate": 4
-    }
+    "condition": "none",
+    "replicate": 4,
+    "deterministic_seed": 1997035894
   },
   {
     "request_id": "calib_P03_1",
+    "protocol_version": "pilot-v2",
     "phase": "calibration",
     "q_id": "P03",
-    "metadata": {
-      "condition": "none",
-      "replicate": 1
-    }
+    "condition": "none",
+    "replicate": 1,
+    "deterministic_seed": 2091618111
   },
   {
     "request_id": "calib_P03_0",
+    "protocol_version": "pilot-v2",
     "phase": "calibration",
     "q_id": "P03",
-    "metadata": {
-      "condition": "none",
-      "replicate": 0
-    }
+    "condition": "none",
+    "replicate": 0,
+    "deterministic_seed": 126600653
   },
   {
     "request_id": "calib_P01_4",
+    "protocol_version": "pilot-v2",
     "phase": "calibration",
     "q_id": "P01",
-    "metadata": {
-      "condition": "none",
-      "replicate": 4
-    }
+    "condition": "none",
+    "replicate": 4,
+    "deterministic_seed": 1737406353
   },
   {
     "request_id": "calib_P01_0",
+    "protocol_version": "pilot-v2",
     "phase": "calibration",
     "q_id": "P01",
-    "metadata": {
-      "condition": "none",
-      "replicate": 0
-    }
+    "condition": "none",
+    "replicate": 0,
+    "deterministic_seed": 1879065026
   },
   {
     "request_id": "calib_P04_0",
+    "protocol_version": "pilot-v2",
     "phase": "calibration",
     "q_id": "P04",
-    "metadata": {
-      "condition": "none",
-      "replicate": 0
-    }
+    "condition": "none",
+    "replicate": 0,
+    "deterministic_seed": 22183505
   },
   {
     "request_id": "calib_P01_3",
+    "protocol_version": "pilot-v2",
     "phase": "calibration",
     "q_id": "P01",
-    "metadata": {
-      "condition": "none",
-      "replicate": 3
-    }
+    "condition": "none",
+    "replicate": 3,
+    "deterministic_seed": 1104011629
   },
   {
     "request_id": "calib_P02_0",
+    "protocol_version": "pilot-v2",
     "phase": "calibration",
     "q_id": "P02",
-    "metadata": {
-      "condition": "none",
-      "replicate": 0
-    }
+    "condition": "none",
+    "replicate": 0,
+    "deterministic_seed": 1210078031
   },
   {
     "request_id": "calib_P04_4",
+    "protocol_version": "pilot-v2",
     "phase": "calibration",
     "q_id": "P04",
-    "metadata": {
-      "condition": "none",
-      "replicate": 4
-    }
+    "condition": "none",
+    "replicate": 4,
+    "deterministic_seed": 574771159
   },
   {
     "request_id": "calib_P01_2",
+    "protocol_version": "pilot-v2",
     "phase": "calibration",
     "q_id": "P01",
-    "metadata": {
-      "condition": "none",
-      "replicate": 2
-    }
+    "condition": "none",
+    "replicate": 2,
+    "deterministic_seed": 717295579
   },
   {
     "request_id": "pilot_ord_P01_H_1",
+    "protocol_version": "pilot-v2",
     "phase": "ordinary",
     "q_id": "P01",
-    "metadata": {
-      "condition": "H",
-      "replicate": 1
-    }
+    "condition": "H",
+    "replicate": 1,
+    "deterministic_seed": 475432954
   },
   {
     "request_id": "pilot_ord_P04_N_1",
+    "protocol_version": "pilot-v2",
     "phase": "ordinary",
     "q_id": "P04",
-    "metadata": {
-      "condition": "N",
-      "replicate": 1
-    }
+    "condition": "N",
+    "replicate": 1,
+    "deterministic_seed": 354233706
   },
   {
     "request_id": "pilot_ord_P01_N_0",
+    "protocol_version": "pilot-v2",
     "phase": "ordinary",
     "q_id": "P01",
-    "metadata": {
-      "condition": "N",
-      "replicate": 0
-    }
+    "condition": "N",
+    "replicate": 0,
+    "deterministic_seed": 1824509413
   },
   {
     "request_id": "pilot_ord_P01_N_1",
+    "protocol_version": "pilot-v2",
     "phase": "ordinary",
     "q_id": "P01",
-    "metadata": {
-      "condition": "N",
-      "replicate": 1
-    }
+    "condition": "N",
+    "replicate": 1,
+    "deterministic_seed": 1659133064
   },
   {
     "request_id": "pilot_ord_P03_N_1",
+    "protocol_version": "pilot-v2",
     "phase": "ordinary",
     "q_id": "P03",
-    "metadata": {
-      "condition": "N",
-      "replicate": 1
-    }
+    "condition": "N",
+    "replicate": 1,
+    "deterministic_seed": 630799522
   },
   {
     "request_id": "pilot_ord_P02_L_1",
+    "protocol_version": "pilot-v2",
     "phase": "ordinary",
     "q_id": "P02",
-    "metadata": {
-      "condition": "L",
-      "replicate": 1
-    }
+    "condition": "L",
+    "replicate": 1,
+    "deterministic_seed": 1836201237
   },
   {
     "request_id": "pilot_ord_P03_H_0",
+    "protocol_version": "pilot-v2",
     "phase": "ordinary",
     "q_id": "P03",
-    "metadata": {
-      "condition": "H",
-      "replicate": 0
-    }
+    "condition": "H",
+    "replicate": 0,
+    "deterministic_seed": 2061903926
   },
   {
     "request_id": "pilot_ord_P01_L_0",
+    "protocol_version": "pilot-v2",
     "phase": "ordinary",
     "q_id": "P01",
-    "metadata": {
-      "condition": "L",
-      "replicate": 0
-    }
+    "condition": "L",
+    "replicate": 0,
+    "deterministic_seed": 1759412674
   },
   {
     "request_id": "pilot_ord_P04_N_0",
+    "protocol_version": "pilot-v2",
     "phase": "ordinary",
     "q_id": "P04",
-    "metadata": {
-      "condition": "N",
-      "replicate": 0
-    }
+    "condition": "N",
+    "replicate": 0,
+    "deterministic_seed": 1318120777
   },
   {
     "request_id": "pilot_ord_P02_N_0",
+    "protocol_version": "pilot-v2",
     "phase": "ordinary",
     "q_id": "P02",
-    "metadata": {
-      "condition": "N",
-      "replicate": 0
-    }
+    "condition": "N",
+    "replicate": 0,
+    "deterministic_seed": 1101381363
   },
   {
     "request_id": "pilot_ord_P01_L_1",
+    "protocol_version": "pilot-v2",
     "phase": "ordinary",
     "q_id": "P01",
-    "metadata": {
-      "condition": "L",
-      "replicate": 1
-    }
+    "condition": "L",
+    "replicate": 1,
+    "deterministic_seed": 1137076023
   },
   {
     "request_id": "pilot_ord_P04_L_0",
+    "protocol_version": "pilot-v2",
     "phase": "ordinary",
     "q_id": "P04",
-    "metadata": {
-      "condition": "L",
-      "replicate": 0
-    }
+    "condition": "L",
+    "replicate": 0,
+    "deterministic_seed": 384311687
   },
   {
     "request_id": "pilot_ord_P02_L_0",
+    "protocol_version": "pilot-v2",
     "phase": "ordinary",
     "q_id": "P02",
-    "metadata": {
-      "condition": "L",
-      "replicate": 0
-    }
+    "condition": "L",
+    "replicate": 0,
+    "deterministic_seed": 2054313353
   },
   {
     "request_id": "pilot_ord_P03_H_1",
+    "protocol_version": "pilot-v2",
     "phase": "ordinary",
     "q_id": "P03",
-    "metadata": {
-      "condition": "H",
-      "replicate": 1
-    }
+    "condition": "H",
+    "replicate": 1,
+    "deterministic_seed": 666199047
   },
   {
     "request_id": "pilot_ord_P04_L_1",
+    "protocol_version": "pilot-v2",
     "phase": "ordinary",
     "q_id": "P04",
-    "metadata": {
-      "condition": "L",
-      "replicate": 1
-    }
+    "condition": "L",
+    "replicate": 1,
+    "deterministic_seed": 876264765
   },
   {
     "request_id": "pilot_ord_P04_H_1",
+    "protocol_version": "pilot-v2",
     "phase": "ordinary",
     "q_id": "P04",
-    "metadata": {
-      "condition": "H",
-      "replicate": 1
-    }
+    "condition": "H",
+    "replicate": 1,
+    "deterministic_seed": 42309565
   },
   {
     "request_id": "pilot_ord_P03_N_0",
+    "protocol_version": "pilot-v2",
     "phase": "ordinary",
     "q_id": "P03",
-    "metadata": {
-      "condition": "N",
-      "replicate": 0
-    }
+    "condition": "N",
+    "replicate": 0,
+    "deterministic_seed": 1775638359
   },
   {
     "request_id": "pilot_ord_P02_N_1",
+    "protocol_version": "pilot-v2",
     "phase": "ordinary",
     "q_id": "P02",
-    "metadata": {
-      "condition": "N",
-      "replicate": 1
-    }
+    "condition": "N",
+    "replicate": 1,
+    "deterministic_seed": 809570140
   },
   {
     "request_id": "pilot_ord_P02_H_1",
+    "protocol_version": "pilot-v2",
     "phase": "ordinary",
     "q_id": "P02",
-    "metadata": {
-      "condition": "H",
-      "replicate": 1
-    }
+    "condition": "H",
+    "replicate": 1,
+    "deterministic_seed": 1026519956
   },
   {
     "request_id": "pilot_ord_P04_H_0",
+    "protocol_version": "pilot-v2",
     "phase": "ordinary",
     "q_id": "P04",
-    "metadata": {
-      "condition": "H",
-      "replicate": 0
-    }
+    "condition": "H",
+    "replicate": 0,
+    "deterministic_seed": 1249594927
   },
   {
     "request_id": "pilot_ord_P03_L_0",
+    "protocol_version": "pilot-v2",
     "phase": "ordinary",
     "q_id": "P03",
-    "metadata": {
-      "condition": "L",
-      "replicate": 0
-    }
+    "condition": "L",
+    "replicate": 0,
+    "deterministic_seed": 1380193451
   },
   {
     "request_id": "pilot_ord_P03_L_1",
+    "protocol_version": "pilot-v2",
     "phase": "ordinary",
     "q_id": "P03",
-    "metadata": {
-      "condition": "L",
-      "replicate": 1
-    }
+    "condition": "L",
+    "replicate": 1,
+    "deterministic_seed": 1560987980
   },
   {
     "request_id": "pilot_ord_P01_H_0",
+    "protocol_version": "pilot-v2",
     "phase": "ordinary",
     "q_id": "P01",
-    "metadata": {
-      "condition": "H",
-      "replicate": 0
-    }
+    "condition": "H",
+    "replicate": 0,
+    "deterministic_seed": 1076135761
   },
   {
     "request_id": "pilot_ord_P02_H_0",
+    "protocol_version": "pilot-v2",
     "phase": "ordinary",
     "q_id": "P02",
-    "metadata": {
-      "condition": "H",
-      "replicate": 0
-    }
+    "condition": "H",
+    "replicate": 0,
+    "deterministic_seed": 1477138017
   },
   {
     "request_id": "pilot_est_N_P02",
+    "protocol_version": "pilot-v2",
     "phase": "worksheet",
     "q_id": "P02",
-    "metadata": {
-      "condition": "N"
-    }
+    "condition": "N",
+    "replicate": null,
+    "deterministic_seed": 145175391
   },
   {
     "request_id": "pilot_est_N_P01",
+    "protocol_version": "pilot-v2",
     "phase": "worksheet",
     "q_id": "P01",
-    "metadata": {
-      "condition": "N"
-    }
+    "condition": "N",
+    "replicate": null,
+    "deterministic_seed": 363785626
   },
   {
     "request_id": "pilot_rev_P02_L",
+    "protocol_version": "pilot-v2",
     "phase": "reviewer",
     "q_id": "P02",
-    "metadata": {
-      "condition": "L"
-    }
+    "condition": "L",
+    "replicate": null,
+    "deterministic_seed": 1974243534
   },
   {
     "request_id": "pilot_rev_P01_N",
+    "protocol_version": "pilot-v2",
     "phase": "reviewer",
     "q_id": "P01",
-    "metadata": {
-      "condition": "N"
-    }
+    "condition": "N",
+    "replicate": null,
+    "deterministic_seed": 96237289
   },
   {
     "request_id": "pilot_rev_P02_H",
+    "protocol_version": "pilot-v2",
     "phase": "reviewer",
     "q_id": "P02",
-    "metadata": {
-      "condition": "H"
-    }
+    "condition": "H",
+    "replicate": null,
+    "deterministic_seed": 1162061638
   },
   {
     "request_id": "pilot_rev_P01_H",
+    "protocol_version": "pilot-v2",
     "phase": "reviewer",
     "q_id": "P01",
-    "metadata": {
-      "condition": "H"
-    }
+    "condition": "H",
+    "replicate": null,
+    "deterministic_seed": 1687047937
   },
   {
     "request_id": "pilot_rev_P01_L",
+    "protocol_version": "pilot-v2",
     "phase": "reviewer",
     "q_id": "P01",
-    "metadata": {
-      "condition": "L"
-    }
+    "condition": "L",
+    "replicate": null,
+    "deterministic_seed": 89326760
   },
   {
     "request_id": "pilot_rev_P02_N",
+    "protocol_version": "pilot-v2",
     "phase": "reviewer",
     "q_id": "P02",
-    "metadata": {
-      "condition": "N"
-    }
+    "condition": "N",
+    "replicate": null,
+    "deterministic_seed": 969763925
   }
 ]
