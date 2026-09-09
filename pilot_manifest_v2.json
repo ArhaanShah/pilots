@@ -1,0 +1,12 @@
+{
+  "protocol_version": "pilot-v2",
+  "master_seed": "20260909",
+  "requested_model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "temperature": 1.0,
+  "max_completion_tokens": 2048,
+  "reasoning_effort": "medium",
+  "question_bank_hash": "51f68a0e4e2b20966ef98a6ab21f0419e9705b559b497e71874622a5bc926408",
+  "timestamp": 0,
+  "log_filename": "test_log.jsonl"
+}

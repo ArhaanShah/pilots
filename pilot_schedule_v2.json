@@ -1,0 +1,462 @@
+[
+  {
+    "request_id": "calib_P03_2",
+    "phase": "calibration",
+    "q_id": "P03",
+    "metadata": {
+      "condition": "none",
+      "replicate": 2
+    }
+  },
+  {
+    "request_id": "calib_P02_3",
+    "phase": "calibration",
+    "q_id": "P02",
+    "metadata": {
+      "condition": "none",
+      "replicate": 3
+    }
+  },
+  {
+    "request_id": "calib_P03_3",
+    "phase": "calibration",
+    "q_id": "P03",
+    "metadata": {
+      "condition": "none",
+      "replicate": 3
+    }
+  },
+  {
+    "request_id": "calib_P04_3",
+    "phase": "calibration",
+    "q_id": "P04",
+    "metadata": {
+      "condition": "none",
+      "replicate": 3
+    }
+  },
+  {
+    "request_id": "calib_P04_2",
+    "phase": "calibration",
+    "q_id": "P04",
+    "metadata": {
+      "condition": "none",
+      "replicate": 2
+    }
+  },
+  {
+    "request_id": "calib_P01_1",
+    "phase": "calibration",
+    "q_id": "P01",
+    "metadata": {
+      "condition": "none",
+      "replicate": 1
+    }
+  },
+  {
+    "request_id": "calib_P02_4",
+    "phase": "calibration",
+    "q_id": "P02",
+    "metadata": {
+      "condition": "none",
+      "replicate": 4
+    }
+  },
+  {
+    "request_id": "calib_P02_1",
+    "phase": "calibration",
+    "q_id": "P02",
+    "metadata": {
+      "condition": "none",
+      "replicate": 1
+    }
+  },
+  {
+    "request_id": "calib_P02_2",
+    "phase": "calibration",
+    "q_id": "P02",
+    "metadata": {
+      "condition": "none",
+      "replicate": 2
+    }
+  },
+  {
+    "request_id": "calib_P04_1",
+    "phase": "calibration",
+    "q_id": "P04",
+    "metadata": {
+      "condition": "none",
+      "replicate": 1
+    }
+  },
+  {
+    "request_id": "calib_P03_4",
+    "phase": "calibration",
+    "q_id": "P03",
+    "metadata": {
+      "condition": "none",
+      "replicate": 4
+    }
+  },
+  {
+    "request_id": "calib_P03_1",
+    "phase": "calibration",
+    "q_id": "P03",
+    "metadata": {
+      "condition": "none",
+      "replicate": 1
+    }
+  },
+  {
+    "request_id": "calib_P03_0",
+    "phase": "calibration",
+    "q_id": "P03",
+    "metadata": {
+      "condition": "none",
+      "replicate": 0
+    }
+  },
+  {
+    "request_id": "calib_P01_4",
+    "phase": "calibration",
+    "q_id": "P01",
+    "metadata": {
+      "condition": "none",
+      "replicate": 4
+    }
+  },
+  {
+    "request_id": "calib_P01_0",
+    "phase": "calibration",
+    "q_id": "P01",
+    "metadata": {
+      "condition": "none",
+      "replicate": 0
+    }
+  },
+  {
+    "request_id": "calib_P04_0",
+    "phase": "calibration",
+    "q_id": "P04",
+    "metadata": {
+      "condition": "none",
+      "replicate": 0
+    }
+  },
+  {
+    "request_id": "calib_P01_3",
+    "phase": "calibration",
+    "q_id": "P01",
+    "metadata": {
+      "condition": "none",
+      "replicate": 3
+    }
+  },
+  {
+    "request_id": "calib_P02_0",
+    "phase": "calibration",
+    "q_id": "P02",
+    "metadata": {
+      "condition": "none",
+      "replicate": 0
+    }
+  },
+  {
+    "request_id": "calib_P04_4",
+    "phase": "calibration",
+    "q_id": "P04",
+    "metadata": {
+      "condition": "none",
+      "replicate": 4
+    }
+  },
+  {
+    "request_id": "calib_P01_2",
+    "phase": "calibration",
+    "q_id": "P01",
+    "metadata": {
+      "condition": "none",
+      "replicate": 2
+    }
+  },
+  {
+    "request_id": "pilot_ord_P01_H_1",
+    "phase": "ordinary",
+    "q_id": "P01",
+    "metadata": {
+      "condition": "H",
+      "replicate": 1
+    }
+  },
+  {
+    "request_id": "pilot_ord_P04_N_1",
+    "phase": "ordinary",
+    "q_id": "P04",
+    "metadata": {
+      "condition": "N",
+      "replicate": 1
+    }
+  },
+  {
+    "request_id": "pilot_ord_P01_N_0",
+    "phase": "ordinary",
+    "q_id": "P01",
+    "metadata": {
+      "condition": "N",
+      "replicate": 0
+    }
+  },
+  {
+    "request_id": "pilot_ord_P01_N_1",
+    "phase": "ordinary",
+    "q_id": "P01",
+    "metadata": {
+      "condition": "N",
+      "replicate": 1
+    }
+  },
+  {
+    "request_id": "pilot_ord_P03_N_1",
+    "phase": "ordinary",
+    "q_id": "P03",
+    "metadata": {
+      "condition": "N",
+      "replicate": 1
+    }
+  },
+  {
+    "request_id": "pilot_ord_P02_L_1",
+    "phase": "ordinary",
+    "q_id": "P02",
+    "metadata": {
+      "condition": "L",
+      "replicate": 1
+    }
+  },
+  {
+    "request_id": "pilot_ord_P03_H_0",
+    "phase": "ordinary",
+    "q_id": "P03",
+    "metadata": {
+      "condition": "H",
+      "replicate": 0
+    }
+  },
+  {
+    "request_id": "pilot_ord_P01_L_0",
+    "phase": "ordinary",
+    "q_id": "P01",
+    "metadata": {
+      "condition": "L",
+      "replicate": 0
+    }
+  },
+  {
+    "request_id": "pilot_ord_P04_N_0",
+    "phase": "ordinary",
+    "q_id": "P04",
+    "metadata": {
+      "condition": "N",
+      "replicate": 0
+    }
+  },
+  {
+    "request_id": "pilot_ord_P02_N_0",
+    "phase": "ordinary",
+    "q_id": "P02",
+    "metadata": {
+      "condition": "N",
+      "replicate": 0
+    }
+  },
+  {
+    "request_id": "pilot_ord_P01_L_1",
+    "phase": "ordinary",
+    "q_id": "P01",
+    "metadata": {
+      "condition": "L",
+      "replicate": 1
+    }
+  },
+  {
+    "request_id": "pilot_ord_P04_L_0",
+    "phase": "ordinary",
+    "q_id": "P04",
+    "metadata": {
+      "condition": "L",
+      "replicate": 0
+    }
+  },
+  {
+    "request_id": "pilot_ord_P02_L_0",
+    "phase": "ordinary",
+    "q_id": "P02",
+    "metadata": {
+      "condition": "L",
+      "replicate": 0
+    }
+  },
+  {
+    "request_id": "pilot_ord_P03_H_1",
+    "phase": "ordinary",
+    "q_id": "P03",
+    "metadata": {
+      "condition": "H",
+      "replicate": 1
+    }
+  },
+  {
+    "request_id": "pilot_ord_P04_L_1",
+    "phase": "ordinary",
+    "q_id": "P04",
+    "metadata": {
+      "condition": "L",
+      "replicate": 1
+    }
+  },
+  {
+    "request_id": "pilot_ord_P04_H_1",
+    "phase": "ordinary",
+    "q_id": "P04",
+    "metadata": {
+      "condition": "H",
+      "replicate": 1
+    }
+  },
+  {
+    "request_id": "pilot_ord_P03_N_0",
+    "phase": "ordinary",
+    "q_id": "P03",
+    "metadata": {
+      "condition": "N",
+      "replicate": 0
+    }
+  },
+  {
+    "request_id": "pilot_ord_P02_N_1",
+    "phase": "ordinary",
+    "q_id": "P02",
+    "metadata": {
+      "condition": "N",
+      "replicate": 1
+    }
+  },
+  {
+    "request_id": "pilot_ord_P02_H_1",
+    "phase": "ordinary",
+    "q_id": "P02",
+    "metadata": {
+      "condition": "H",
+      "replicate": 1
+    }
+  },
+  {
+    "request_id": "pilot_ord_P04_H_0",
+    "phase": "ordinary",
+    "q_id": "P04",
+    "metadata": {
+      "condition": "H",
+      "replicate": 0
+    }
+  },
+  {
+    "request_id": "pilot_ord_P03_L_0",
+    "phase": "ordinary",
+    "q_id": "P03",
+    "metadata": {
+      "condition": "L",
+      "replicate": 0
+    }
+  },
+  {
+    "request_id": "pilot_ord_P03_L_1",
+    "phase": "ordinary",
+    "q_id": "P03",
+    "metadata": {
+      "condition": "L",
+      "replicate": 1
+    }
+  },
+  {
+    "request_id": "pilot_ord_P01_H_0",
+    "phase": "ordinary",
+    "q_id": "P01",
+    "metadata": {
+      "condition": "H",
+      "replicate": 0
+    }
+  },
+  {
+    "request_id": "pilot_ord_P02_H_0",
+    "phase": "ordinary",
+    "q_id": "P02",
+    "metadata": {
+      "condition": "H",
+      "replicate": 0
+    }
+  },
+  {
+    "request_id": "pilot_est_N_P02",
+    "phase": "worksheet",
+    "q_id": "P02",
+    "metadata": {
+      "condition": "N"
+    }
+  },
+  {
+    "request_id": "pilot_est_N_P01",
+    "phase": "worksheet",
+    "q_id": "P01",
+    "metadata": {
+      "condition": "N"
+    }
+  },
+  {
+    "request_id": "pilot_rev_P02_L",
+    "phase": "reviewer",
+    "q_id": "P02",
+    "metadata": {
+      "condition": "L"
+    }
+  },
+  {
+    "request_id": "pilot_rev_P01_N",
+    "phase": "reviewer",
+    "q_id": "P01",
+    "metadata": {
+      "condition": "N"
+    }
+  },
+  {
+    "request_id": "pilot_rev_P02_H",
+    "phase": "reviewer",
+    "q_id": "P02",
+    "metadata": {
+      "condition": "H"
+    }
+  },
+  {
+    "request_id": "pilot_rev_P01_H",
+    "phase": "reviewer",
+    "q_id": "P01",
+    "metadata": {
+      "condition": "H"
+    }
+  },
+  {
+    "request_id": "pilot_rev_P01_L",
+    "phase": "reviewer",
+    "q_id": "P01",
+    "metadata": {
+      "condition": "L"
+    }
+  },
+  {
+    "request_id": "pilot_rev_P02_N",
+    "phase": "reviewer",
+    "q_id": "P02",
+    "metadata": {
+      "condition": "N"
+    }
+  }
+]
