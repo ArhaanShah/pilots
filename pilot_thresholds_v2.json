@@ -1,0 +1,106 @@
+{
+  "P01": {
+    "source_request_ids": [
+      "calib_P01_1",
+      "calib_P01_4",
+      "calib_P01_0",
+      "calib_P01_3",
+      "calib_P01_2"
+    ],
+    "source_output_sha256": {
+      "calib_P01_1": "6372cd78544042488114a2ce4b39eaa2c96667c0b57b83886a913c6523490043",
+      "calib_P01_4": "442f3a0601601d068a6f32600e8f946b5dea9b8498e2445c20f68427079a716a",
+      "calib_P01_0": "d58aec533bdb8aef6200662d139654781ddb23dcdec11c6e369a3692510ccef3",
+      "calib_P01_3": "37b22003af7a1ed377267cd27286a33cc128f749b2f86847a89deb20f74c87ce",
+      "calib_P01_2": "f4d3c76076dd0b8d5a0646201d08c3f7f3e94e596a8b26528713926124d6a763"
+    },
+    "raw_values": [
+      144000000.0,
+      23000000.0,
+      15000000.0,
+      120000000.0,
+      24000000.0
+    ],
+    "valid_count": 5,
+    "median": 24000000.0,
+    "threshold": 24000000.0
+  },
+  "P02": {
+    "source_request_ids": [
+      "calib_P02_3",
+      "calib_P02_4",
+      "calib_P02_1",
+      "calib_P02_2",
+      "calib_P02_0"
+    ],
+    "source_output_sha256": {
+      "calib_P02_3": "2ea9fff49572f032d6f0930178bad2fb062182fd333efc0a56429e9d9ac1d8e3",
+      "calib_P02_4": "cb9435f422da3d352ff74461be1124217ff055c60d9c52d0db5d80cec03e883d",
+      "calib_P02_1": "4db06a51b7ccb41eedf723e36ecf934db6e3f1871e262cf2688622e4ceefa9b8",
+      "calib_P02_2": "8a72b97d14fb6f1bfae8abce3fc608f145cfbddcb8803d9b7e86aef8d3b44a04",
+      "calib_P02_0": "151f7d0b350c2c217a6b61171fb4daf1871d60660cf8c002f1ff599568e80bde"
+    },
+    "raw_values": [
+      750.0,
+      1000.0,
+      1300.0,
+      870.0,
+      950.0
+    ],
+    "valid_count": 5,
+    "median": 950.0,
+    "threshold": 950.0
+  },
+  "P03": {
+    "source_request_ids": [
+      "calib_P03_2",
+      "calib_P03_3",
+      "calib_P03_4",
+      "calib_P03_1",
+      "calib_P03_0"
+    ],
+    "source_output_sha256": {
+      "calib_P03_2": "8a6194facc7439c0c18ad1cc5642bff67a768389defaff88689d6bfd4d8fea78",
+      "calib_P03_3": "b18e36aea6e45f0cc9f1ee42e8aaa46597408f5dbcb39253109895c746e7d940",
+      "calib_P03_4": "1535d7d5539932c6db653ac32c01fc7cf43f411592ef384a43677e9244db8048",
+      "calib_P03_1": "860a824414f1d9a08f475877809eb11d83d9def77e31f31770abaf0df4a05afe",
+      "calib_P03_0": "d41f4eeb3717dc1aecb983ac0805338461f62eb2fe5b5d9b543668ab323b1369"
+    },
+    "raw_values": [
+      5000000.0,
+      100000000.0,
+      42000000.0,
+      15200000.0,
+      130000000.0
+    ],
+    "valid_count": 5,
+    "median": 42000000.0,
+    "threshold": 42000000.0
+  },
+  "P04": {
+    "source_request_ids": [
+      "calib_P04_3",
+      "calib_P04_2",
+      "calib_P04_1",
+      "calib_P04_0",
+      "calib_P04_4"
+    ],
+    "source_output_sha256": {
+      "calib_P04_3": "00a6e477800182da75cd94cae7fdf1828b81258248e1d3960acfad01eab1458e",
+      "calib_P04_2": "70ab3f2ad5e87c0ad6d83033af1a80c8a0dac3296e5a059b08cf7bc560e3d541",
+      "calib_P04_1": "dfdfb56ce2b52631dd3f13922e67e206d826ee1448232db78fd5e5ba47e6dad1",
+      "calib_P04_0": "f77f04cf2015f31499ba10b171631ebd0b0526750fa5522228e4a7e7b95171c1",
+      "calib_P04_4": "9dc455a4938b1e5d5c98987cbd5f57285a2aff1906e5ebda7ee668b54cf2c2ea"
+    },
+    "raw_values": [
+      1300000.0,
+      390000.0,
+      500000.0,
+      720000.0,
+      500000.0
+    ],
+    "valid_count": 5,
+    "median": 500000.0,
+    "threshold": 500000.0
+  }
+}

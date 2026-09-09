@@ -1,0 +1,30 @@
+{
+  "P02": {
+    "status": "available",
+    "source_request_id": "pilot_est_N_P02",
+    "source_output_sha256": "c33741044e235868affd496783be993689c9f603898505991c6c01cdd2b6df70",
+    "canonical_factors": {
+      "song_duration_seconds": 210.0,
+      "average_zill_strikes_per_second": 3.8
+    },
+    "reviewer_prompt_sha256": {
+      "H": "44f768cf6fefe3f4424003315b34533b820f9944f1ac6e2a54233d2092340977",
+      "L": "206f217cf1c43d1fa1f8dfbddca2665274a42dd076e7419bb7bdcad94d413eee",
+      "N": "4c8b5312d3631a51be099303df8311fc027ef7a1b6bc30db47d343de4e373458"
+    }
+  },
+  "P01": {
+    "status": "available",
+    "source_request_id": "pilot_est_N_P01",
+    "source_output_sha256": "e816c0bcedeb801562bf1f666029822b4cd1ae7bc1729e8853130b0e7bbe17fd",
+    "canonical_factors": {
+      "living_giraffes": 100000.0,
+      "average_spots_per_giraffe": 200.0
+    },
+    "reviewer_prompt_sha256": {
+      "H": "3c0e1fb033cc192508f2721984fc7cfafdb74d5733af6f02321e27130a311a1c",
+      "L": "d740ac26d02874b96ca83c9f22d58be23fb0353fde4c0dc8c637eba67e936a8b",
+      "N": "9ec8df12a3a75a99087c42d047c3d10942563f569f9706ead12ee770bdd317f9"
+    }
+  }
+}
