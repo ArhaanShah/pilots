@@ -37,6 +37,10 @@ python -m src.experiment --execute
 ```
 The script will safely resume from `pilot_log_v2.jsonl` using the checkpoints. It verifies that prompt text, configuration, and model have not changed.
 
+## Parser amendment
+
+Before any treatment-condition responses were collected, the calibration parser was amended to accept Markdown emphasis surrounding the `ESTIMATE:` label. The numerical grammar and validity criteria were otherwise unchanged. Existing raw calibration responses were preserved and reparsed uniformly.
+
 ## Analysis
 
 To generate the technical and descriptive audit report:

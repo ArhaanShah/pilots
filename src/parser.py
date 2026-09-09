@@ -15,6 +15,12 @@ def parse_estimate_line(text):
         line = re.sub(r'^[*_]+', '', line)
         line = re.sub(r'[*_]+$', '', line)
         line = line.strip()
+        line = re.sub(
+            r"^(ESTIMATE:)[*_]+",
+            r"\1",
+            line,
+            flags=re.IGNORECASE,
+        )
         
         if line.upper().startswith("ESTIMATE:"):
             # Use fullmatch on the rest

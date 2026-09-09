@@ -17,6 +17,8 @@ class TestParser(unittest.TestCase):
         self.assertEqual(parse_estimate_line("ESTIMATE: 123.45"), 123.45)
         self.assertEqual(parse_estimate_line("**ESTIMATE: 1,000**"), 1000.0)
         self.assertEqual(parse_estimate_line("_ESTIMATE: 1e6_"), 1000000.0)
+        self.assertEqual(parse_estimate_line("Reason\n**ESTIMATE:** 1300000"), 1300000)
+        self.assertEqual(parse_estimate_line("Reason\n**ESTIMATE: 1300000**"), 1300000)
         self.assertEqual(parse_estimate_line("ESTIMATE: +42"), 42.0)
         self.assertIsNone(parse_estimate_line("ESTIMATE: 1 million"))
         self.assertIsNone(parse_estimate_line("ESTIMATE: 2 x 10^6"))
