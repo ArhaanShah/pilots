@@ -6,11 +6,11 @@ from groq import Groq, InternalServerError, APIConnectionError, RateLimitError
 from src.config import RunConfig
 
 class ExperimentClient:
-    def __init__(self, config: RunConfig):
-        # Allow testing without key
+    def __init__(self, config: RunConfig, require_api_key=False):
         key = os.getenv("GROQ_API_KEY")
+        if not key and require_api_key:
+            raise ValueError("GROQ_API_KEY is required for --execute")
         if not key:
-            # We assume it's a test environment if key is missing, mock it
             key = "mock_key"
         self.client = Groq(api_key=key)
         self.config = config
@@ -57,6 +57,28 @@ class ExperimentClient:
         # We need atomic appending or just standard file append
         with open(self.config.log_path, "a") as f:
             f.write(json.dumps(record) + "\n")
+
+    def record_unavailable(self, request_id, metadata, reason, dependency=None):
+        existing = self.completed_requests.get(request_id)
+        if existing and existing.get("transport_status") in {"success", "unavailable"}:
+            return existing
+        record = {
+            "request_id": request_id,
+            "protocol_version": self.config.protocol_version,
+            "phase": metadata.get("phase"),
+            "q_id": metadata.get("q_id"),
+            "condition": metadata.get("condition"),
+            "replicate": metadata.get("replicate"),
+            "requested_model": self.config.requested_model,
+            "timestamp": time.time(),
+            "transport_status": "unavailable",
+            "unavailable_reason": reason,
+            "dependency": dependency or {},
+            "metadata": metadata,
+        }
+        self.log_result(record)
+        self.completed_requests[request_id] = record
+        return record
             
     def _hash_str(self, text):
         return hashlib.sha256(text.encode()).hexdigest()
@@ -153,6 +175,12 @@ class ExperimentClient:
                 
             except RateLimitError as e:
                 # Does not consume a transport retry
+                if self._is_daily_quota_error(e):
+                    print("Daily quota exhaustion detected. Stopping cleanly.")
+                    self._record_quota_exhaustion(
+                        request_id, prompt_hash, settings_hash, str(e)
+                    )
+                    raise SystemExit(0)
                 print(f"Rate limited. Waiting. {e}")
                 retry_after = None
                 if hasattr(e, 'response') and hasattr(e.response, 'headers'):
@@ -186,19 +214,30 @@ class ExperimentClient:
             except Exception as e:
                 if "quota" in str(e).lower():
                     print("Quota exhaustion detected. Stopping cleanly.")
-                    # Save a pending-state record and exit cleanly.
-                    err_record = {
-                        "request_id": request_id,
-                        "protocol_version": self.config.protocol_version,
-                        "prompt_sha256": prompt_hash,
-                        "requested_model": self.config.requested_model,
-                        "settings_hash": settings_hash,
-                        "timestamp": time.time(),
-                        "transport_status": "pending_quota",
-                        "error_msg": str(e)
-                    }
-                    self.log_result(err_record)
-                    import sys
-                    sys.exit(0)
+                    self._record_quota_exhaustion(
+                        request_id, prompt_hash, settings_hash, str(e)
+                    )
+                    raise SystemExit(0)
                 print(f"Fatal error: {e}")
                 raise e
+
+    @staticmethod
+    def _is_daily_quota_error(error):
+        message = str(error).lower()
+        daily_markers = ("daily", "per day", "tokens per day", "requests per day", "tpd", "rpd")
+        return any(marker in message for marker in daily_markers)
+
+    def _record_quota_exhaustion(self, request_id, prompt_hash, settings_hash, message):
+        err_record = {
+            "request_id": request_id,
+            "protocol_version": self.config.protocol_version,
+            "prompt_sha256": prompt_hash,
+            "requested_model": self.config.requested_model,
+            "settings_hash": settings_hash,
+            "timestamp": time.time(),
+            "transport_status": "pending_quota",
+            "error_category": "daily_quota",
+            "error_msg": message,
+        }
+        self.log_result(err_record)
+        self.completed_requests[request_id] = err_record

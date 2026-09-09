@@ -8,7 +8,7 @@ from unittest.mock import patch, MagicMock
 
 from src.parser import parse_estimate_line, parse_worksheet, parse_reviewer, round_sigfigs, evaluate_formula
 from src.client import ExperimentClient
-from src.experiment import build_schedule, validate_schedule, load_and_validate_preflight_artifacts, run_pilot, PreflightError, hash_dict
+from src.experiment import build_schedule, validate_schedule, load_and_validate_preflight_artifacts, run_pilot, PreflightError, hash_dict, source_file_hashes
 from src.config import RunConfig
 from src.questions import PILOT_QUESTIONS
 
@@ -74,6 +74,19 @@ class TestPreflightRejection(unittest.TestCase):
         with self.assertRaises(PreflightError):
             validate_schedule(self.schedule, self.config)
 
+    def test_prompt_source_change_blocks_execution_validation(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            config = RunConfig(
+                manifest_path=os.path.join(temp_dir, "manifest.json"),
+                schedule_path=os.path.join(temp_dir, "schedule.json"),
+            )
+            run_pilot(config, execute=False, output_dir=temp_dir)
+            changed_hashes = source_file_hashes()
+            changed_hashes["src/prompts.py"] = "changed"
+            with patch("src.experiment.source_file_hashes", return_value=changed_hashes):
+                with self.assertRaisesRegex(PreflightError, "Prompt template hash mismatch"):
+                    load_and_validate_preflight_artifacts(config, temp_dir)
+
 class TestClient(unittest.TestCase):
     def setUp(self):
         self.temp_dir = tempfile.mkdtemp()
@@ -109,6 +122,11 @@ class TestClient(unittest.TestCase):
         
         with self.assertRaises(ValueError):
             client.generate("req1", "prompt2", execute=False)
+
+    def test_execute_requires_api_key(self):
+        with patch.dict(os.environ, {}, clear=True):
+            with self.assertRaisesRegex(ValueError, "GROQ_API_KEY"):
+                ExperimentClient(self.config, require_api_key=True)
 
 if __name__ == "__main__":
     unittest.main()

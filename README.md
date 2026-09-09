@@ -43,3 +43,5 @@ To generate the technical and descriptive audit report:
 ```bash
 python -m src.analyze --log pilot_log_v2.jsonl
 ```
+The command writes the reproducible machine-readable result to
+`pilot_analysis_v2.json`. Use `--analysis <path>` to choose another output file.

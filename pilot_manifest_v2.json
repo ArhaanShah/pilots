@@ -1,6 +1,7 @@
 {
   "protocol_version": "pilot-v2",
-  "creation_timestamp": "2026-09-09T00:00:00Z",
+  "creation_timestamp": "2026-09-09T16:13:24.804231Z",
+  "git_commit": "add37a01ed065ec2555e8d3c3d73164483462e98",
   "master_schedule_seed": "20260909",
   "provider": "groq",
   "requested_model": "openai/gpt-oss-120b",
@@ -11,7 +12,16 @@
   },
   "generation_settings_sha256": "73dcbcbf4e3b9596f464a42329560c1d63c3551458a5ca7df24f7a6a679941d5",
   "question_bank_sha256": "7fd6d8d6977a49eae13c7b8ada7045c69cdbfb73772bed574feb450e01ebd84f",
-  "prompt_template_sha256": "5cffe824b87070dd01d8d525e768bda0fc0ce4a9aab732bc7845a451fb05cbbb",
+  "prompt_template_sha256": "4104a889dfae990b5197bb13fa316f0f7724338e63cd7144d38a62b8627298a2",
+  "source_file_sha256": {
+    "src/analyze.py": "089f74ca2013f678d2786122ecb83cdffaab897d6e5bb5bb3bc33650e3bc8dfb",
+    "src/client.py": "917f5c883292f3ed075088c03d64680c2e8e9b6f5021051d1d6d5e33b5ea482d",
+    "src/config.py": "fc36dcdb4b9495981d44579a632d64d2906806532d25ae9266e8f670412e8199",
+    "src/experiment.py": "d0af5d502e02c4ad60e3468f4c3bea08f9651196cc41f22ee74ccc8768252880",
+    "src/parser.py": "307a830d8f616c117a2127ab786f6b7e93231b7a0c758db991d69df2f0cd0b90",
+    "src/prompts.py": "4104a889dfae990b5197bb13fa316f0f7724338e63cd7144d38a62b8627298a2",
+    "src/questions.py": "66a7366e41e12906e54f31ac058173bf00f8f4f6a082272a3368c484ca9d5b19"
+  },
   "schedule_sha256": "d299c7bf959ff57fa50bfe72b829f9013806a3fa5cd7ba3cd65e2c8925f5ed9a",
   "output_filenames": {
     "manifest": "pilot_manifest_v2.json",

@@ -6,27 +6,31 @@ import shutil
 from unittest.mock import patch, MagicMock
 
 from src.config import RunConfig
-from src.experiment import run_pilot
+from src.experiment import PreflightError, run_pilot
 
 class MockResponse:
     def __init__(self, content):
         self.choices = [MagicMock(message=MagicMock(content=content), finish_reason="stop")]
         self.usage = MagicMock(prompt_tokens=100, completion_tokens=50, total_tokens=150)
-        self.model = "mock-model"
+        self.model = "openai/gpt-oss-120b"
         self.system_fingerprint = "mock-fp"
 
 class TestMockE2E(unittest.TestCase):
     def setUp(self):
         self.temp_dir = tempfile.mkdtemp()
+        self.env_patcher = patch.dict(os.environ, {"GROQ_API_KEY": "test-key"})
+        self.env_patcher.start()
         self.config = RunConfig(
             manifest_path=os.path.join(self.temp_dir, "manifest.json"),
             schedule_path=os.path.join(self.temp_dir, "schedule.json"),
             thresholds_path=os.path.join(self.temp_dir, "thresholds.json"),
             reviewer_inputs_path=os.path.join(self.temp_dir, "reviewer.json"),
-            log_path=os.path.join(self.temp_dir, "log.jsonl")
+            log_path=os.path.join(self.temp_dir, "log.jsonl"),
+            analysis_path=os.path.join(self.temp_dir, "analysis.json")
         )
         
     def tearDown(self):
+        self.env_patcher.stop()
         shutil.rmtree(self.temp_dir)
         
     @patch('src.client.time.sleep')
@@ -74,7 +78,55 @@ class TestMockE2E(unittest.TestCase):
             self.assertEqual(len(lines), 52)
             
         from src.analyze import analyze
-        analyze(self.config)
+        report = analyze(self.config)
+        self.assertEqual(report["recommendation"]["decision"], "stop_or_pivot")
+        self.assertTrue(os.path.exists(self.config.analysis_path))
+
+        with open(self.config.thresholds_path, "r") as f:
+            thresholds = json.load(f)
+        self.assertEqual(len(thresholds["P01"]["source_request_ids"]), 5)
+        self.assertEqual(len(thresholds["P01"]["source_output_sha256"]), 5)
+
+        with open(self.config.reviewer_inputs_path, "r") as f:
+            reviewer_inputs = json.load(f)
+        self.assertEqual(set(reviewer_inputs["P01"]["reviewer_prompt_sha256"]), {"H", "L", "N"})
+
+        original_threshold_hash = thresholds["P01"]["source_output_sha256"]["calib_P01_0"]
+        thresholds["P01"]["source_output_sha256"]["calib_P01_0"] = "stale"
+        with open(self.config.thresholds_path, "w") as f:
+            json.dump(thresholds, f)
+        with self.assertRaisesRegex(PreflightError, "Threshold source mismatch"):
+            run_pilot(self.config, execute=True, output_dir=self.temp_dir)
+        thresholds["P01"]["source_output_sha256"]["calib_P01_0"] = original_threshold_hash
+        with open(self.config.thresholds_path, "w") as f:
+            json.dump(thresholds, f)
+
+        # Stale reviewer prompt provenance must also be rejected before reuse.
+        original_prompt_hash = reviewer_inputs["P01"]["reviewer_prompt_sha256"]["H"]
+        reviewer_inputs["P01"]["reviewer_prompt_sha256"]["H"] = "stale"
+        with open(self.config.reviewer_inputs_path, "w") as f:
+            json.dump(reviewer_inputs, f)
+        with self.assertRaisesRegex(PreflightError, "Reviewer input source mismatch"):
+            run_pilot(self.config, execute=True, output_dir=self.temp_dir)
+
+        reviewer_inputs["P01"]["reviewer_prompt_sha256"]["H"] = original_prompt_hash
+        with open(self.config.reviewer_inputs_path, "w") as f:
+            json.dump(reviewer_inputs, f)
+        self.assertEqual(mock_client_instance.chat.completions.create.call_count, 52)
+
+        # A missing ordinary outcome must make the persisted recommendation invalid.
+        with open(self.config.log_path, "r") as f:
+            records = [json.loads(line) for line in f]
+        records = [r for r in records if r["request_id"] != "pilot_ord_P01_H_0"]
+        with open(self.config.log_path, "w") as f:
+            for record in records:
+                f.write(json.dumps(record) + "\n")
+        report = analyze(self.config)
+        self.assertEqual(report["recommendation"]["decision"], "technically_invalid")
+        self.assertIn(
+            "missing_calibration_or_ordinary_outcome",
+            report["recommendation"]["technical_invalid_reasons"],
+        )
 
     @patch('src.client.time.sleep')
     @patch('src.client.Groq')
@@ -105,6 +157,11 @@ class TestMockE2E(unittest.TestCase):
         # P02 worksheet is invalid. So 3 P02 reviewers will be skipped.
         # So 52 - 3 = 49 API calls
         self.assertEqual(mock_client_instance.chat.completions.create.call_count, 49)
+        with open(self.config.log_path, "r") as f:
+            records = [json.loads(line) for line in f]
+        unavailable = [r for r in records if r.get("transport_status") == "unavailable"]
+        self.assertEqual(len(unavailable), 3)
+        self.assertTrue(all(r["unavailable_reason"] == "invalid_source_worksheet" for r in unavailable))
 
 if __name__ == "__main__":
     unittest.main()
